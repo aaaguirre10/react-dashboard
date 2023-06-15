@@ -77,7 +77,7 @@ export const tokens = (mode) => ({
           100: "#040509",
           200: "#080b12",
           300: "#0c101b",
-          400: "#1F2A40", // manually changed
+          400: "#f2f0f0", // manually changed
           500: "#141b2d",
           600: "#1F2A40",
           700: "#727681",
@@ -193,7 +193,6 @@ export const themeSettings = (mode) => {
   };
 };
 
-// The following code creates a context to have easy access to the condition of "light" or "dark" and allows to have the function to change it.
 // context for color mode
 export const ColorModeContext = createContext({
   toggleColorMode: () => {},
@@ -203,7 +202,6 @@ export const useMode = () => {
   const [mode, setMode] = useState("dark");
 
   const colorMode = useMemo(
-    //function that allows us to change between light or dark
     () => ({
       toggleColorMode: () =>
         setMode((prev) => (prev === "light" ? "dark" : "light")),
@@ -211,7 +209,6 @@ export const useMode = () => {
     []
   );
 
-  // creates a theme from mui and passing themeSettings for the proper mode
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return [theme, colorMode];
 };
